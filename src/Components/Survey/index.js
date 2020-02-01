@@ -13,7 +13,7 @@ const itemTypes = [
   { name: 'Shoes', src: '' },
 ]
 
-const Survey = ({ history }) => {
+const Survey = ({ history, themeColor }) => {
   const [selectedVals, setSelectedVals] = useState({
     location: null,
     itemType: null,
@@ -34,15 +34,15 @@ const Survey = ({ history }) => {
   return (
     <>
       {!selectedVals.location && <div>
-        <Location selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+        <Location themeColor={themeColor} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
       {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && !selectedVals.itemType && <div>
-        <ItemType itemTypes={itemTypes} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+        <ItemType themeColor={themeColor} itemTypes={itemTypes} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
       {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && selectedVals.itemType && !finishSurvey && <div>
-        <Condition setFinishSurvey={setFinishSurvey} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+        <Condition themeColor={themeColor} setFinishSurvey={setFinishSurvey} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
     </>

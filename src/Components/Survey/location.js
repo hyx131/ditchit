@@ -2,26 +2,26 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Fab, TextField } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  input: {
-    width: theme.spacing(30),
-    height: theme.spacing(30),
-    margin: theme.spacing(2)
-  },
-  header: {
-    margin: theme.spacing(5)
-  },
-  body: {
-    textAlign: 'center'
-  },
-  button: {
-    width: theme.spacing(20),
-    backgroundColor: '#34eba1'
-  }
-}));
 
+const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
+  const useStyles = makeStyles(theme => ({
+    input: {
+      width: theme.spacing(30),
+      height: theme.spacing(30),
+      margin: theme.spacing(2)
+    },
+    header: {
+      margin: theme.spacing(5)
+    },
+    body: {
+      textAlign: 'center'
+    },
+    button: {
+      width: theme.spacing(20),
+      backgroundColor: themeColor.themeGreen
+    }
+  }));
 
-const Location = ({ selectedVals, setSelectedVals, ...props }) => {
   const classes = useStyles()
 
   const [alert, setAlert] = useState(true)
