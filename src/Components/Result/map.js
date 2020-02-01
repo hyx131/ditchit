@@ -54,5 +54,5 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBG-hTTarn0IDtzzosUYB_nHy4mJiZV4_M'
+  apiKey: process.env['GOOGLE_API_KEY']
 })(MapSection)

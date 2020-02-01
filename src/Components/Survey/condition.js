@@ -2,27 +2,27 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Fab } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    margin: theme.spacing(5)
-  },
-  body: {
-    textAlign: 'center',
-    margin: theme.spacing(5)
-  },
-  button: {
-    width: theme.spacing(20),
-    backgroundColor: '#34eba1'
-  },
-  option: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-    margin: theme.spacing(5)
-  }
-}));
 
+const Condition = ({ themeColor, setFinishSurvey, selectedVals, setSelectedVals, ...props }) => {
+  const useStyles = makeStyles(theme => ({
+    header: {
+      margin: theme.spacing(5)
+    },
+    body: {
+      textAlign: 'center',
+      margin: theme.spacing(5)
+    },
+    button: {
+      width: theme.spacing(20),
+      backgroundColor: themeColor.themeGreen
+    },
+    option: {
+      width: theme.spacing(15),
+      height: theme.spacing(15),
+      margin: theme.spacing(5)
+    }
+  }));
 
-const Condition = ({ setFinishSurvey, selectedVals, setSelectedVals, ...props }) => {
   const classes = useStyles()
 
   const [option, setOption] = useState(true)
@@ -55,8 +55,8 @@ const Condition = ({ setFinishSurvey, selectedVals, setSelectedVals, ...props })
         <Typography align='center' variant='h6'>Are there any visible / physical damages ?</Typography>
       </Grid>
       <Grid item xs={12} className={classes.body}>
-        <Fab className={classes.option} onClick={clickYes} style={option === true ? null : option === 'yes' ? { backgroundColor: '#34eba1' } : null}>YES</Fab>
-        <Fab className={classes.option} onClick={clickNo} style={option === true ? null : option === 'no' ? { backgroundColor: '#34eba1' } : null}>NO</Fab>
+        <Fab className={classes.option} onClick={clickYes} style={option === true ? null : option === 'yes' ? { backgroundColor: themeColor.themeGreen } : null}>YES</Fab>
+        <Fab className={classes.option} onClick={clickNo} style={option === true ? null : option === 'no' ? { backgroundColor: themeColor.themeGreen } : null}>NO</Fab>
       </Grid>
       <Grid item xs={12} style={{ textAlign: 'center' }}>
         <Fab disabled={option === true} className={classes.button} variant='extended' onClick={clickNext}>Go</Fab>

@@ -5,15 +5,20 @@ import Location from './location'
 import ItemType from './item-type'
 import Condition from './condition'
 
+import clothingPic from '../../Images/fashion.png'
+import beddingPic from '../../Images/laundry.png'
+import shoePic from '../../Images/shoes.png'
+import accessoriesPic from '../../Images/accessories.png'
+
 //mock data:
 const itemTypes = [
-  { name: 'Clothing', src: '/public/images/test.png' },
-  { name: 'Bedding', src: '' },
-  { name: 'Accessories', src: '' },
-  { name: 'Shoes', src: '' },
+  { name: 'Clothing', src: clothingPic },
+  { name: 'Bedding', src: beddingPic },
+  { name: 'Accessories', src: accessoriesPic },
+  { name: 'Shoes', src: shoePic },
 ]
 
-const Survey = ({ history }) => {
+const Survey = ({ history, themeColor }) => {
   const [selectedVals, setSelectedVals] = useState({
     location: null,
     itemType: null,
@@ -34,15 +39,15 @@ const Survey = ({ history }) => {
   return (
     <>
       {!selectedVals.location && <div>
-        <Location selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+        <Location themeColor={themeColor} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
-      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && !selectedVals.itemType && <div>
-        <ItemType itemTypes={itemTypes} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.province && selectedVals.location.radius && !selectedVals.itemType && <div>
+        <ItemType themeColor={themeColor} itemTypes={itemTypes} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
-      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && selectedVals.itemType && !finishSurvey && <div>
-        <Condition setFinishSurvey={setFinishSurvey} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
+      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.province && selectedVals.location.radius && selectedVals.itemType && !finishSurvey && <div>
+        <Condition themeColor={themeColor} setFinishSurvey={setFinishSurvey} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
     </>
