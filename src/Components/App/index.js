@@ -6,14 +6,25 @@ import SurveyPage from '../Survey'
 import ResultPage from '../Result'
 
 function App() {
+  const themeColor = {
+    background: "#F5F5F5",
+    themeGreen: "#28B351"
+  }
+
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" >
+            <HomePage themeColor={themeColor} />
+          </Route>
           <Route exact path="/learn" />
-          <Route exact path='/survey' component={SurveyPage} />
-          <Route exact path='/result' component={ResultPage} />
+          <Route exact path='/survey'>
+            <SurveyPage themeColor={themeColor} />
+          </Route>
+          <Route exact path='/result'>
+            <ResultPage themeColor={themeColor} />
+          </Route>
         </Switch>
       </Router>
     </div>
