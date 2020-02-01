@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import Location from './location'
 import ItemType from './item-type'
@@ -12,7 +13,7 @@ const itemTypes = [
   { name: 'Shoes', src: '' },
 ]
 
-const Survey = () => {
+const Survey = ({ history }) => {
   const [selectedVals, setSelectedVals] = useState({
     location: null,
     itemType: null,
@@ -26,6 +27,7 @@ const Survey = () => {
     if (finishSurvey === true) {
       // send to backend
       console.log(selectedVals)
+      history.push('/result')
     }
   }, [selectedVals, finishSurvey])
 
@@ -47,4 +49,4 @@ const Survey = () => {
   )
 }
 
-export default Survey
+export default withRouter(Survey)
