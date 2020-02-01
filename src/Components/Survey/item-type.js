@@ -62,13 +62,21 @@ const ItemType = ({ themeColor, itemTypes, selectedVals, setSelectedVals, ...pro
 
   return (
     <Grid container justify='center'>
-      <Grid item>
+      <Grid item xs={12}>
+        <Typography align='center' variant='h5' style={{ marginTop: '10px' }} >ditch.it</Typography>
+      </Grid>
+
+      <Grid item xs={12} style={{ maxWidth: "550px", height: '10%', marginTop: '80px' }}>
+        <Typography align='center' variant='h6'>Choose the type of item you are trying to ditch.</Typography>
+      </Grid>
+
+      <Grid item style={{ marginTop: '40px' }}>
         <div className={hover ? classes.hoverTrue : classes.hoverFalse}>
           {itemTypes.map((itemType, i) => {
             return (
-              <Paper key={i} elevation={hover ? 5 : 2} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onClick={() => clickItem(i, itemType.name)} style={selected && selected.i === i ? { backgroundColor: themeColor.themeGreen } : null}>
-                <Avatar src={itemType.src} className={classes.large} />
-                <Typography variant='h5' align='center' color='primary'>{itemType.name}</Typography>
+              <Paper key={i} elevation={hover ? 5 : 2} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onClick={() => clickItem(i, itemType.name)} style={selected && selected.i === i ? { border: `3px solid ${themeColor.themeGreen}` } : null}>
+                <Avatar src={itemType.src} className={classes.large} style={{ width: '70px', height: '70px' }} />
+                <Typography variant='h6' align='center' color='grey'>{(itemType.name).toUpperCase()}</Typography>
               </Paper>
             )
           })}
@@ -77,7 +85,7 @@ const ItemType = ({ themeColor, itemTypes, selectedVals, setSelectedVals, ...pro
       <Grid item xs={12} style={{ textAlign: 'center' }}>
         <Fab disabled={selected === true} variant='extended' size='large' className={classes.fab} onClick={clickNext}>Next</Fab>
       </Grid>
-    </Grid>
+    </Grid >
   );
 }
 
