@@ -4,11 +4,8 @@ import MapSection from './map'
 import LocationList from './location-list'
 
 import { Grid } from '@material-ui/core'
-import { mockResult } from './API/results'
 
-const Result = () => {
-  const apiResults = mockResult()
-
+const Result = ({ apiResults }) => {
   const [selectedLoc, setSelectedLoc] = useState({
     lat: null,
     lng: null

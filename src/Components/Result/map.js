@@ -9,10 +9,10 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
 
   const [zoom, setZoom] = useState(15)
   const [center, setCenter] = useState({
-    lat: apiResults.initialCenter.lat,
-    lng: apiResults.initialCenter.lng
+    lat: apiResults.initialCoordinates.lat,
+    lng: apiResults.initialCoordinates.lng
   })
-  const [locList, setlocList] = useState(apiResults.resultList)
+  const [locList, setlocList] = useState(apiResults.options)
 
   useEffect(() => {
     if (selectedLoc.lat) {
@@ -35,8 +35,8 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
       zoom={zoom}
       style={mapStyles}
       initialCenter={{
-        lat: apiResults.initialCenter.lat,
-        lng: apiResults.initialCenter.lng
+        lat: apiResults.initialCoordinates.lat,
+        lng: apiResults.initialCoordinates.lng
       }}
       center={{
         lat: center.lat,
@@ -45,7 +45,7 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
     >
       {locList.map((locResult, i) => {
         return (
-          <Marker key={i} name={locResult.name} position={{ lat: locResult.lat, lng: locResult.lng }} />
+          <Marker key={i} name={locResult.name} position={{ lat: locResult.coordinates ? locResult.coordinates.lat : locResult.lat, lng: locResult.coordinates ? locResult.coordinates.lng : locResult.lng }} />
         )
       })}
 

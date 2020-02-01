@@ -29,11 +29,11 @@ const LocationList = ({ apiResults, selectedLoc, setSelectedLoc, ...props }) => 
 
   return (
     <List className={classes.root}>
-      {apiResults.resultList.map(result => {
+      {apiResults.options.map(result => {
         return (
           <>
-            <ListItem button onClick={() => clickLocation(result.lat, result.lng)}>
-              <ListItemText primary={result.name} secondary="Jan 9, 2014" />
+            <ListItem button onClick={() => clickLocation(result.coordinates.lat, result.coordinates.lng)}>
+              <ListItemText primary={result.name} secondary={result.name} />
             </ListItem>
             <Divider component="li" />
           </>
