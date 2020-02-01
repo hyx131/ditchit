@@ -5,16 +5,18 @@ import { Grid, Typography, Fab, TextField } from '@material-ui/core';
 
 const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
   const useStyles = makeStyles(theme => ({
+    root: {
+      height: theme.spacing(115),
+      backgroundColor: themeColor.background
+    },
     input: {
       width: theme.spacing(30),
-      height: theme.spacing(30),
+      height: theme.spacing(0),
       margin: theme.spacing(2)
     },
-    header: {
-      margin: theme.spacing(5)
-    },
     body: {
-      textAlign: 'center'
+      textAlign: 'center',
+      height: theme.spacing(0),
     },
     button: {
       width: theme.spacing(20),
@@ -29,7 +31,8 @@ const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
     city: null,
     address: null,
     postalCode: null,
-    country: null
+    province: null,
+    radius: null,
   })
 
   const handleChange = (name, e) => {
@@ -40,7 +43,7 @@ const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
   }
 
   const clickNext = () => {
-    if (val.city && val.address && val.postalCode && val.country) {
+    if (val.city && val.address && val.postalCode && val.province && val.radius) {
       setSelectedVals({
         ...setSelectedVals,
         location: val
@@ -49,25 +52,45 @@ const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
   }
 
   useEffect(() => {
-    if (val.city && val.address && val.postalCode && val.country) {
+    if (val.city && val.address && val.postalCode && val.province && val.radius) {
       setAlert(false)
     }
   }, [val])
 
   return (
-    <Grid container>
-      <Grid item xs={12} className={classes.header}>
-        <Typography align='center' variant='h6'>Where are you located ?</Typography>
+    <Grid container spacing={2} className={classes.root} justify='center'>
+
+      <Grid item xs={12}>
+        <Typography align='center' variant='h5' style={{ marginTop: '10px' }} >ditch.it</Typography>
       </Grid>
-      <Grid item xs={12} className={classes.body}>
+
+      <Grid item xs={12} style={{ maxWidth: "550px", height: '10%' }}>
+        <Typography align='center' variant='h4'>Where are you currently located ?</Typography>
+        <Typography style={{ marginTop: '20px', color: 'grey' }} align='center' variant='subtitle1'>We dont want you to mission it. We'll be using your location to provide you with a list of places closest to you.</Typography>
+      </Grid>
+
+      <Grid item xs={12} className={classes.body} >
+        <TextField className={classes.input} style={{ width: '40%' }} variant='outlined' label='Address:' value={val.address} onChange={e => handleChange('address', e)} />
+      </Grid>
+
+      <Grid item xs={12} className={classes.body} >
         <TextField className={classes.input} variant='outlined' label='City:' value={val.city} onChange={e => handleChange('city', e)} />
-        <TextField className={classes.input} style={{ width: '30%' }} variant='outlined' label='Address:' value={val.address} onChange={e => handleChange('address', e)} />
         <TextField className={classes.input} variant='outlined' label='Postal Code:' value={val.postalCode} onChange={e => handleChange('postalCode', e)} />
-        <TextField className={classes.input} variant='outlined' label='Country:' value={val.country} onChange={e => handleChange('country', e)} />
+        <TextField className={classes.input} variant='outlined' label='Province:' value={val.province} onChange={e => handleChange('province', e)} />
       </Grid>
+
+      <Grid item xs={12} className={classes.body}>
+        <Typography style={{ color: 'grey', }} align='center' variant='subtitle1'>Specify the radius around your area.</Typography>
+      </Grid>
+
+      <Grid item xs={12} className={classes.body}>
+        <TextField className={classes.input} variant='outlined' label='Radius (M):' value={val.radius} onChange={e => handleChange('radius', e)} />
+      </Grid>
+
       <Grid item xs={12} style={{ textAlign: 'center' }}>
         <Fab disabled={alert} className={classes.button} variant='extended' onClick={clickNext}>Next</Fab>
       </Grid>
+
     </Grid>
   )
 }

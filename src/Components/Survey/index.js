@@ -37,11 +37,11 @@ const Survey = ({ history, themeColor }) => {
         <Location themeColor={themeColor} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
-      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && !selectedVals.itemType && <div>
+      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.province && selectedVals.location.radius && !selectedVals.itemType && <div>
         <ItemType themeColor={themeColor} itemTypes={itemTypes} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
-      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.country && selectedVals.itemType && !finishSurvey && <div>
+      {selectedVals.location && selectedVals.location.city && selectedVals.location.address && selectedVals.location.postalCode && selectedVals.location.province && selectedVals.location.radius && selectedVals.itemType && !finishSurvey && <div>
         <Condition themeColor={themeColor} setFinishSurvey={setFinishSurvey} selectedVals={selectedVals} setSelectedVals={setSelectedVals} />
       </div>}
 
