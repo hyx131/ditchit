@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper, Avatar, Typography, Fab } from "@material-ui/core";
 
 const ItemType = ({
+  history,
   themeColor,
   itemTypes,
   selectedVals,
@@ -73,18 +75,31 @@ const ItemType = ({
     });
   };
 
+  const goBack = () => {
+    history.goBack()
+  }
+
+  const goHome = () => {
+    setSelectedVals({
+      location: null,
+      itemType: null,
+      conditions: [],
+      canDonate: true
+    })
+    history.push('/')
+  }
+
   return (
     <Grid
       container
       justify="center"
-      style={{ backgroundColor: themeColor.background }}
+      style={{ backgroundColor: themeColor.background, height: '100vh' }}
     >
-      <Grid item xs={12}>
-        <Typography align="center" variant="h5" style={{ marginTop: "2%" }}>
-          ditch.it
+      <Grid item xs={12} className={classes.body}>
+        <Typography align="center" variant="h5" style={{ marginTop: "1%", cursor: 'pointer' }} onClick={goHome}>
+          <a>ditch.it</a>
         </Typography>
       </Grid>
-
       <Grid
         item
         xs={12}
@@ -131,12 +146,18 @@ const ItemType = ({
           size="large"
           className={classes.fab}
           onClick={clickNext}
+          style={{ margin: '5px' }}
         >
           Next
         </Fab>
+        <a onClick={goBack} style={{ cursor: 'pointer' }}><u>
+          <Typography align="center" variant="subtitle1" style={{ color: 'grey' }}>
+            Back
+            </Typography>
+        </u></a>
       </Grid>
     </Grid>
   );
 };
 
-export default ItemType;
+export default withRouter(ItemType);

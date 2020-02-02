@@ -6,6 +6,10 @@ import HomePage from "../Home";
 import SurveyPage from "../Survey";
 import ResultPage from "../Result";
 
+// import surveyLocation from '../Survey/location'
+// import surveyItemType from '../Survey/item-type'
+// import surveyCondition from '../Survey/condition'
+
 function App() {
   const themeColor = {
     background: "#F5F5F5",
@@ -29,7 +33,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <HomePage themeColor={themeColor} />
+            <HomePage setSelectedVals={setSelectedVals} themeColor={themeColor} />
           </Route>
           <Route exact path="/learn" />
           <Route exact path="/survey">
@@ -41,6 +45,34 @@ function App() {
               themeColor={themeColor}
             />
           </Route>
+          {/* <Route exact path="/survey-location">
+            <SurveyLocation
+              selectedVals={selectedVals}
+              setSelectedVals={setSelectedVals}
+              apiResults={apiResults}
+              setApiResults={setApiResults}
+              themeColor={themeColor}
+            />
+          </Route>
+          <Route exact path="/survey-item-type">
+            <SurveyItemType
+              selectedVals={selectedVals}
+              setSelectedVals={setSelectedVals}
+              apiResults={apiResults}
+              setApiResults={setApiResults}
+              themeColor={themeColor}
+            />
+          </Route>
+          <Route exact path="/survey-condition">
+            <surveyCondition
+              selectedVals={selectedVals}
+              setSelectedVals={setSelectedVals}
+              apiResults={apiResults}
+              setApiResults={setApiResults}
+              themeColor={themeColor}
+            />
+          </Route> */}
+
           <Route exact path="/result">
             {apiResults ? (
               <ResultPage
@@ -49,11 +81,11 @@ function App() {
                 themeColor={themeColor}
               />
             ) : (
-              <div style={{ margin: "300px 300px 300px 700px" }}>
-                <CircularProgress style={{ margin: "5px" }} />
-                Loading...
+                <div style={{ margin: "300px 300px 300px 700px" }}>
+                  <CircularProgress style={{ margin: "5px" }} />
+                  Loading...
               </div>
-            )}
+              )}
           </Route>
         </Switch>
       </Router>
