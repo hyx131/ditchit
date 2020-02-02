@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Fab } from "@material-ui/core";
 
 const Condition = ({
+  history,
   themeColor,
   setFinishSurvey,
   selectedVals,
@@ -32,7 +34,7 @@ const Condition = ({
     },
     option: {
       width: theme.spacing(20),
-      height: theme.spacing(15),
+      height: theme.spacing(10),
       margin: theme.spacing(5),
       backgroundColor: themeColor.themeWhite,
       color: themeColor.themeBlackRegular,
@@ -68,11 +70,25 @@ const Condition = ({
     setOption("no");
   };
 
+  const goBack = () => {
+    history.goBack()
+  }
+
+  const goHome = () => {
+    setSelectedVals({
+      location: null,
+      itemType: null,
+      conditions: [],
+      canDonate: true
+    })
+    history.push('/')
+  }
+
   return (
-    <Grid container spacing={5}>
-      <Grid item xs={12}>
-        <Typography align="center" variant="h5" style={{ marginTop: "2%" }}>
-          ditch.it
+    <Grid container spacing={5} style={{ height: '102vh', backgroundColor: themeColor.background }}>
+      <Grid item xs={12} className={classes.body}>
+        <Typography align="center" variant="h5" style={{ cursor: 'pointer' }} onClick={goHome}>
+          <a>ditch.it</a>
         </Typography>
       </Grid>
       <Grid item xs={12} className={classes.header}>
@@ -83,17 +99,18 @@ const Condition = ({
       <Grid item xs={12} className={classes.body}>
         <Fab
           className={classes.option}
+          variant='extended'
           onClick={clickYes}
           style={
             option === true
               ? null
               : option === "yes"
-              ? {
+                ? {
                   border: `3px solid ${themeColor.themeGreen}`,
                   backgroundColor: themeColor.themeWhite,
                   color: themeColor.themeBlackRegular
                 }
-              : null
+                : null
           }
         >
           <Typography align="center" variant="h4">
@@ -102,17 +119,18 @@ const Condition = ({
         </Fab>
         <Fab
           className={classes.option}
+          variant="extended"
           onClick={clickNo}
           style={
             option === true
               ? null
               : option === "no"
-              ? {
+                ? {
                   border: `3px solid ${themeColor.themeGreen}`,
                   backgroundColor: themeColor.themeWhite,
                   color: themeColor.themeBlackRegular
                 }
-              : null
+                : null
           }
         >
           <Typography align="center" variant="h4">
@@ -126,12 +144,18 @@ const Condition = ({
           className={classes.button}
           variant="extended"
           onClick={clickNext}
+          style={{ margin: '5px' }}
         >
           Go
         </Fab>
+        <a onClick={goBack} style={{ cursor: 'pointer' }}><u>
+          <Typography align="center" variant="subtitle1" style={{ color: 'grey' }}>
+            Back
+            </Typography>
+        </u></a>
       </Grid>
     </Grid>
   );
 };
 
-export default Condition;
+export default withRouter(Condition);

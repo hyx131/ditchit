@@ -9,10 +9,10 @@ import { Grid, Fab, Typography } from "@material-ui/core";
 const ditchItemValueOptions = ["clothing", "bedding", "shoes", "accessories"];
 // const [ditchItemIndex, updateDitchItem] = useState(0);
 
-const HomePage = ({ history, themeColor, ...props }) => {
+const HomePage = ({ setSelectedVals, history, themeColor, ...props }) => {
   const useStyles = makeStyles(theme => ({
     root: {
-      height: theme.spacing(115),
+      height: theme.spacing(134),
       backgroundColor: themeColor.background
     },
     button: {
@@ -43,11 +43,24 @@ const HomePage = ({ history, themeColor, ...props }) => {
     return () => clearInterval(interval);
   }, [index]);
 
+  const goHome = () => {
+    history.push('/')
+  }
+
+  useEffect(() => {
+    setSelectedVals({
+      location: null,
+      itemType: null,
+      conditions: [],
+      canDonate: true
+    })
+  }, [])
+
   return (
     <Grid container spacing={2} className={classes.root} justify="center">
       <Grid item xs={12}>
-        <Typography align="center" variant="h5" style={{ marginTop: "10px" }}>
-          ditch.it
+        <Typography align="center" variant="h5" style={{ marginTop: "10px", cursor: 'pointer' }} onClick={goHome}>
+          <a>ditch.it</a>
         </Typography>
       </Grid>
       <Grid item xs={12} style={{ marginTop: "20px" }}>
@@ -67,7 +80,7 @@ const HomePage = ({ history, themeColor, ...props }) => {
           className={classes.button}
           variant="extended"
           onClick={() => history.push("/survey")}
-          // style={{ boxShadow: "none" }}
+        // style={{ boxShadow: "none" }}
         >
           Start Now
         </Fab>

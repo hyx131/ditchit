@@ -1,28 +1,32 @@
 import React, { useState } from 'react'
-
+import { withRouter } from 'react-router-dom'
 import MapSection from './map'
 import LocationList from './location-list'
 
 import { Grid, Typography } from '@material-ui/core'
 
-import backgroundPic from '../../Images/result-page-design.png'
+import backgroundPic from '../../Images/colours.png'
 
-const Result = ({ selectedVals, themeColor, apiResults }) => {
+const Result = ({ history, selectedVals, themeColor, apiResults }) => {
   const [selectedLoc, setSelectedLoc] = useState({
     lat: null,
     lng: null
   })
 
-  return (
-    <Grid container spacing={2} direction='column' alignItems='center'>
+  const goHome = () => {
+    history.push('/')
+  }
 
-      <Grid item xs={12} container style={{ background: `url(${backgroundPic}) no-repeat center center fixed`, backgroundSize: 'cover', minHeight: '35vh' }}>
+  return (
+    <Grid container spacing={2} direction='column' alignItems='center' >
+
+      <Grid item xs={12} container style={{ background: `url(${backgroundPic}) no-repeat center center fixed`, backgroundSize: 'cover', minHeight: '40vh' }}>
         <Grid item xs={12}>
-          <Typography align='center' variant='h5' style={{ marginTop: '10px' }} >ditch.it</Typography>
+          <Typography align='center' variant='h5' style={{ marginTop: '10px', cursor: 'pointer' }} onClick={goHome}><a>ditch.it</a></Typography>
         </Grid>
 
         <Grid item xs={12} style={{ maxWidth: "550px", height: '10%', margin: 'auto' }}>
-          <Typography align='center' variant='h6' style={{ color: 'grey' }}><u>&nbsp;&nbsp;RESULTS&nbsp;&nbsp;</u></Typography>
+          <Typography align='center' variant='h6' style={{ color: 'grey', marginBottom: '10px' }}>RESULTS</Typography>
           <Typography align='center' variant='h4'>Because your clothes are special</Typography>
           {selectedVals.canDonate ?
             <Typography style={{ marginTop: '20px', color: 'grey' }} align='center' variant='subtitle1'>Based on your selection, your clothes could be donated to the following places!</Typography>
@@ -47,4 +51,4 @@ const Result = ({ selectedVals, themeColor, apiResults }) => {
   )
 }
 
-export default Result
+export default withRouter(Result)
