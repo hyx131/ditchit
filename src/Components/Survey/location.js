@@ -64,74 +64,71 @@ const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
   }, [val]);
 
   return (
-    <Grid container spacing={115} className={classes.root}>
-      <Grid item xs={12} className={classes.body}>
-        <Typography align="center" variant="h4" style={{ marginTop: "2%" }}>
-          ditch.it
-        </Typography>
+    <div>
+      <Grid container spacing={10} className={classes.root}>
+        <Grid item xs={12} className={classes.body}>
+          <Typography align="center" variant="h5" style={{ marginTop: "2%" }}>
+            ditch.it
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.body}>
+          <Typography align="center" variant="h4">
+            Where are you currently located ?
+          </Typography>
+          <Typography
+            style={{ marginTop: "20px", color: "grey" }}
+            align="center"
+            variant="subtitle1"
+          >
+            We dont want you to mission it. We'll be using your location to
+            provide you with a list of places closest to you.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.body}>
+          <TextField
+            className={classes.input}
+            style={{ width: "40%" }}
+            variant="outlined"
+            label="Address:"
+            value={val.address}
+            onChange={e => handleChange("address", e)}
+          />
+        </Grid>
+        <Grid item xs={12} className={classes.body}>
+          <TextField
+            className={classes.input}
+            variant="outlined"
+            label="City:"
+            value={val.city}
+            onChange={e => handleChange("city", e)}
+          />
+          <TextField
+            className={classes.input}
+            variant="outlined"
+            label="Province:"
+            value={val.province}
+            onChange={e => handleChange("province", e)}
+          />
+          <TextField
+            className={classes.input}
+            variant="outlined"
+            label="Radius (M):"
+            value={val.radius}
+            onChange={e => handleChange("radius", e)}
+          />
+        </Grid>
+        <Grid item xs={12} style={{ textAlign: "center" }}>
+          <Fab
+            disabled={alert}
+            className={classes.button}
+            variant="extended"
+            onClick={clickNext}
+          >
+            Next
+          </Fab>
+        </Grid>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        // style={{ maxWidth: "550px", height: "10%" }}
-        className={classes.body}
-      >
-        <Typography align="center" variant="h4">
-          Where are you currently located ?
-        </Typography>
-        <Typography
-          style={{ marginTop: "20px", color: "grey" }}
-          align="center"
-          variant="subtitle1"
-        >
-          We dont want you to mission it. We'll be using your location to
-          provide you with a list of places closest to you.
-        </Typography>
-      </Grid>
-      <Grid item xs={12} className={classes.body}>
-        <TextField
-          className={classes.input}
-          style={{ width: "40%" }}
-          variant="outlined"
-          label="Address:"
-          value={val.address}
-          onChange={e => handleChange("address", e)}
-        />
-      </Grid>
-      <Grid item xs={12} className={classes.body}>
-        <TextField
-          className={classes.input}
-          variant="outlined"
-          label="City:"
-          value={val.city}
-          onChange={e => handleChange("city", e)}
-        />
-        <TextField
-          className={classes.input}
-          variant="outlined"
-          label="Province:"
-          value={val.province}
-          onChange={e => handleChange("province", e)}
-        />
-        <TextField
-          className={classes.input}
-          variant="outlined"
-          label="Radius (M):"
-          value={val.radius}
-          onChange={e => handleChange("radius", e)}
-        />
-      </Grid>
-      <Grid item xs={12} style={{ textAlign: "center" }}>
-        <Fab
-          disabled={alert}
-          className={classes.button}
-          variant="extended"
-          onClick={clickNext}
-        >
-          Next
-        </Fab>
-      </Grid>
-    </Grid>
+    </div>
   );
 };
 
