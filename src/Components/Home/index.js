@@ -17,6 +17,7 @@ const HomePage = ({ history, themeColor, ...props }) => {
     },
     button: {
       width: theme.spacing(20),
+      margin: theme.spacing(10),
       backgroundColor: themeColor.themeGreen,
       color: themeColor.themeWhite,
       boxShadow: "none",
@@ -27,54 +28,20 @@ const HomePage = ({ history, themeColor, ...props }) => {
   }));
   const classes = useStyles();
   let [index, setIndex] = useState(0);
-  // let [ditchItem, setDitchItem] = useState("clothing");
-
-  // const updateDitchItem = () => {
-  //   // if (index < 3) {
-  //   //   // console.log("index < 3 ", index);
-  //   //   setIndex(index + 1);
-  //   // } else {
-  //   //   setIndex(0);
-  //   // }
-  //   console.log("update!", index);
-  //   setIndex(index + 1);
-  // };
-
-  // let updateIndexAtInterval = setInterval(() => updateDitchItem(), 2000);
-  // useEffect(() => {
-  //   const id = setInterval(() => {
-  //     updateDitchItem(index);
-  //   }, 1000);
-
-  //   return () => {
-  //     console.log("unmount");
-  //     // setIndex(0);
-  //     clearInterval(id);
-  //   };
-  // }, []);
-  // const newIndex = () => {
-  //   if (index < 3) {
-  //     setIndex(index + 1);
-  //     console.log("update index");
-  //   }
-  // };
-
-  // const bob = "help";
-  // const bob = "me";
 
   // To DO : uncomment the following when done styling thenquiz
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log("MY INDEX", index);
-  //     // setDitchItem(ditchItemValueOptions[index]);
-  //     if (index < 3) {
-  //       setIndex(index => index + 1);
-  //     } else {
-  //       setIndex(0);
-  //     }
-  //   }, 2000);
-  //   return () => clearInterval(interval);
-  // }, [index]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("MY INDEX", index);
+      // setDitchItem(ditchItemValueOptions[index]);
+      if (index < 3) {
+        setIndex(index => index + 1);
+      } else {
+        setIndex(0);
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [index]);
 
   return (
     <Grid container spacing={2} className={classes.root} justify="center">

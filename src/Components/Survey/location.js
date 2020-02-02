@@ -19,14 +19,15 @@ const Location = ({ themeColor, selectedVals, setSelectedVals, ...props }) => {
     },
     button: {
       width: theme.spacing(20),
+      margin: theme.spacing(10),
       backgroundColor: themeColor.themeGreen,
       color: themeColor.themeWhite,
       boxShadow: "none",
-      "&:disabled": {
-        // color: themeColor.themeBlackRegular,
-        width: theme.spacing(20),
-        backgroundColor: "#CDCDCD",
-        boxShadow: "none"
+      "&:hover": {
+        color: themeColor.themeBlackRegular
+        // width: theme.spacing(20),
+        // backgroundColor: "#CDCDCD",
+        // boxShadow: "none"
       }
     }
   }));

@@ -39,10 +39,12 @@ const ItemType = ({
       margin: theme.spacing(10),
       backgroundColor: themeColor.themeGreen,
       color: themeColor.themeWhite,
-      "&:disabled": {
-        width: theme.spacing(20),
-        backgroundColor: "#CDCDCD",
-        boxShadow: "none"
+      boxShadow: "none",
+      "&:hover": {
+        color: themeColor.themeBlackRegular
+        // width: theme.spacing(20),
+        // backgroundColor: "#CDCDCD",
+        // boxShadow: "none"
       }
     }
   }));
@@ -74,7 +76,7 @@ const ItemType = ({
   return (
     <Grid container justify="center">
       <Grid item xs={12}>
-        <Typography align="center" variant="h5" style={{ marginTop: "10px" }}>
+        <Typography align="center" variant="h5" style={{ marginTop: "2%" }}>
           ditch.it
         </Typography>
       </Grid>
@@ -95,7 +97,7 @@ const ItemType = ({
             return (
               <Paper
                 key={i}
-                elevation={hover === i ? 5 : 2}
+                elevation={hover === i ? 7 : 2}
                 onMouseEnter={() => mouseEnter(i)}
                 onMouseLeave={mouseLeave}
                 onClick={() => clickItem(i, itemType.name)}
