@@ -1,68 +1,151 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an application for finding the correct and appropriate locations around you to ditch your old belongings.
 
-## Available Scripts
+Server deployed on Heroku: https://limitless-woodland-38268.herokuapp.com/   
+React-app deployed on Netlify: https://suspicious-chandrasekhar-bf5b27.netlify.com
 
-In the project directory, you can run:
+There is currently one POST route that can be accessed at this server which is to get a list of locations based on whether the quiz results determine that items are good to donate or not.   
+   
 
-### `yarn start`
+### Sample POST request: https://limitless-woodland-38268.herokuapp.com/ditchit/recommendations with body:
+```
+{
+	"location": {"city":"Toronto","address":"4700 Keele St","province":"ON","radius":10000},
+	"itemType": "Clothing",
+	"canDonate": "true"
+}
+```
+### Sample response returns 5 of each eligible category:
+```
+{
+    "initialCoordinates": {
+        "lat": 43.774282,
+        "lng": -79.4931409
+    },
+    "categories": [
+        "clothing+donation+centres",
+        "homeless+shelters"
+    ],
+    "options": [
+        {
+            "category": "clothing+donation+centres",
+            "name": "SECOND CHANCE Clothing and More",
+            "address": "31 Wood Dale Rd, Concord, ON L4K 5M1, Canada",
+            "coordinates": {
+                "lat": 43.835014,
+                "lng": -79.495503
+            },
+            "isOpen": {
+                "open_now": false
+            },
+            "phone": "(416) 818-3974",
+            "url": "https://maps.google.com/?cid=13333050065804087630",
+            "website": "http://www.secondchanceclothingandmore.com/"
+        },
+        {
+            "category": "clothing+donation+centres",
+            "name": "Jessie's - The June Callwood Centre for Young Women",
+            "address": "205 Parliament St, Toronto, ON M5A 2Z4, Canada",
+            "coordinates": {
+                "lat": 43.6563651,
+                "lng": -79.3646031
+            },
+            "isOpen": {
+                "open_now": false
+            },
+            "phone": "(416) 365-1888",
+            "url": "https://maps.google.com/?cid=16686050738384576829",
+            "website": "http://jessiescentre.org/"
+        },
+        {
+            "category": "clothing+donation+centres",
+            "name": "Ontario Federation For Cerebral Palsy",
+            "address": "1630 Lawrence Ave W #104, North York, ON M6L 1C5, Canada",
+            "coordinates": {
+                "lat": 43.7062648,
+                "lng": -79.4915676
+            },
+            "isOpen": {
+                "open_now": false
+            },
+            "phone": "(416) 244-9686",
+            "url": "https://maps.google.com/?cid=3628933790286548346",
+            "website": "http://www.ofcp.ca/"
+        },
+        {
+            "category": "clothing+donation+centres",
+            "name": "Dress For Success Toronto",
+            "address": "5150 Yonge Street Concourse Level, Toronto, ON M2N 6L8, Canada",
+            "coordinates": {
+                "lat": 43.76846399999999,
+                "lng": -79.414017
+            },
+            "isOpen": {
+                "open_now": false
+            },
+            "phone": "(416) 901-6022",
+            "url": "https://maps.google.com/?cid=9391548470966579741",
+            "website": "https://toronto.dressforsuccess.org/"
+        },
+        {
+            "category": "clothing+donation+centres",
+            "name": "The Salvation Army Thrift Store",
+            "address": "2291 Kipling Ave, Etobicoke, ON M9W 4L6, Canada",
+            "coordinates": {
+                "lat": 43.7297247,
+                "lng": -79.57438929999999
+            },
+            "isOpen": {
+                "open_now": false
+            },
+            "phone": "(416) 749-1923",
+            "url": "https://maps.google.com/?cid=15891626207186154773",
+            "website": "http://www.thriftstore.ca/"
+        },
+        {
+            "category": "homeless+shelters",
+            "name": "Eva's Satellite",
+            "address": "25 Canterbury Pl, North York, ON M2N 0E3, Canada",
+            "coordinates": {
+                "lat": 43.772794,
+                "lng": -79.4147679
+            },
+            "isOpen": {
+                "open_now": true
+            },
+            "phone": "(416) 229-1874",
+            "url": "https://maps.google.com/?cid=3288185670364839324",
+            "website": "http://www.evas.ca/"
+        },
+        {
+            "category": "homeless+shelters",
+            "name": "Marcrussel Landayan's Homeless Shelter",
+            "address": "Vaughan, ON L4H 2Z7, Canada",
+            "coordinates": {
+                "lat": 43.8360396,
+                "lng": -79.5595154
+            },
+            "url": "https://maps.google.com/?cid=2073076157341024358"
+        },
+        ...
+    ]
+}
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Home Page:
+![Home Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.01.29%20AM.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Enter where you are located:
+![Location Survey Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.01.50%20AM.png)
 
-### `yarn test`
+## Choose the type of item(s) you want to ditch:
+![Item Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.02.04%20AM.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Report the condition of your item(s):
 
-### `yarn build`
+## List of resulting options based on your location and item(s) condition:
+![Results Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.02.26%20AM.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Expansion panels showing extra details about each option:
+![Result Detail Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.02.44%20AM.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

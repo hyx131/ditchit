@@ -41,8 +41,8 @@ const ItemType = ({ themeColor, itemTypes, selectedVals, setSelectedVals, ...pro
   const [hover, setHover] = useState(false)
   const [selected, setSelected] = useState(true)
 
-  const mouseEnter = () => {
-    setHover(true)
+  const mouseEnter = (i) => {
+    setHover(i)
   }
 
   const mouseLeave = () => {
@@ -74,7 +74,7 @@ const ItemType = ({ themeColor, itemTypes, selectedVals, setSelectedVals, ...pro
         <div className={hover ? classes.hoverTrue : classes.hoverFalse}>
           {itemTypes.map((itemType, i) => {
             return (
-              <Paper key={i} elevation={hover ? 5 : 2} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onClick={() => clickItem(i, itemType.name)} style={selected && selected.i === i ? { border: `3px solid ${themeColor.themeGreen}` } : null}>
+              <Paper key={i} elevation={hover === i ? 5 : 2} onMouseEnter={() => mouseEnter(i)} onMouseLeave={mouseLeave} onClick={() => clickItem(i, itemType.name)} style={selected && selected.i === i ? { border: `3px solid ${themeColor.themeGreen}` } : null}>
                 <Avatar src={itemType.src} className={classes.large} style={{ width: '70px', height: '70px' }} />
                 <Typography variant='h6' align='center' color='grey'>{(itemType.name).toUpperCase()}</Typography>
               </Paper>
