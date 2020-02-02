@@ -17,7 +17,12 @@ const HomePage = ({ history, themeColor, ...props }) => {
     },
     button: {
       width: theme.spacing(20),
-      backgroundColor: themeColor.themeGreen
+      backgroundColor: themeColor.themeGreen,
+      color: themeColor.themeWhite,
+      boxShadow: "none",
+      "&:hover": {
+        color: themeColor.themeBlackRegular
+      }
     }
   }));
   const classes = useStyles();
@@ -56,18 +61,20 @@ const HomePage = ({ history, themeColor, ...props }) => {
 
   // const bob = "help";
   // const bob = "me";
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("MY INDEX", index);
-      // setDitchItem(ditchItemValueOptions[index]);
-      if (index < 3) {
-        setIndex(index => index + 1);
-      } else {
-        setIndex(0);
-      }
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [index]);
+
+  // To DO : uncomment the following when done styling thenquiz
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("MY INDEX", index);
+  //     // setDitchItem(ditchItemValueOptions[index]);
+  //     if (index < 3) {
+  //       setIndex(index => index + 1);
+  //     } else {
+  //       setIndex(0);
+  //     }
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, [index]);
 
   return (
     <Grid container spacing={2} className={classes.root} justify="center">
@@ -93,6 +100,7 @@ const HomePage = ({ history, themeColor, ...props }) => {
           className={classes.button}
           variant="extended"
           onClick={() => history.push("/survey")}
+          // style={{ boxShadow: "none" }}
         >
           Start Now
         </Fab>
