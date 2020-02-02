@@ -8,6 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,6 +32,11 @@ const useStyles = makeStyles(theme => ({
     width: '13px',
     height: '13px',
     marginLeft: '1em'
+  },
+  car : {
+    width: '15px',
+    height: '15px',
+    marginLeft: '1em'
   }
 }));
 
@@ -47,6 +53,7 @@ const LocationList = ({ apiResults, selectedLoc, setSelectedLoc, ...props }) => 
   const categories = apiResults.categories
   const category1 = apiResults.options.filter(result => result.category === categories[0])
   const category2 = apiResults.options.filter(result => result.category === categories[1])
+  const randomlyGeneratedPickupIcon = () => Math.round(Math.random())
 
   return (
     <List className={classes.root}>
@@ -67,6 +74,7 @@ const LocationList = ({ apiResults, selectedLoc, setSelectedLoc, ...props }) => 
                 <Typography className={classes.heading}>
                   {(result.name)}
                   {result.isOpen ? (result.isOpen.open_now === true ?<FiberManualRecordIcon className={classes.open}/> : <FiberManualRecordIcon className={classes.closed}/>) : null }
+                  {randomlyGeneratedPickupIcon() === 1 ? <DriveEtaIcon className={classes.car}/> : null }
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
@@ -99,6 +107,7 @@ const LocationList = ({ apiResults, selectedLoc, setSelectedLoc, ...props }) => 
                 <Typography className={classes.heading}>
                   {result.name}
                   {result.isOpen ? (result.isOpen.open_now === true ?<FiberManualRecordIcon className={classes.open}/> : <FiberManualRecordIcon className={classes.closed}/>) : null }
+                  {randomlyGeneratedPickupIcon() === 1 ? <DriveEtaIcon className={classes.car}/> : null }
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
