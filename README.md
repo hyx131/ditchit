@@ -141,6 +141,7 @@ There is currently one POST route that can be accessed at this server which is t
 ![Item Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.02.04%20AM.png)
 
 ## Report the condition of your item(s):
+![Item(s) Conditions Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%203.46.13%20AM.png)
 
 ## List of resulting options based on your location and item(s) condition:
 ![Results Page](https://github.com/hyx131/ditchit/blob/master/public/Screen%20Shot%202020-02-02%20at%202.02.26%20AM.png)
