@@ -1,7 +1,12 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Divider, List, ListItem, ListItemText } from '@material-ui/core'
+import { List } from '@material-ui/core'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,19 +31,66 @@ const LocationList = ({ apiResults, selectedLoc, setSelectedLoc, ...props }) => 
       lng: longitude
     })
   }
-
+  const categories = apiResults.categories
+  const category1 = apiResults.options.filter(result => result.category === categories[0])
+  const category2 = apiResults.options.filter(result => result.category === categories[1])
+  
   return (
     <List className={classes.root}>
-      {apiResults.options.map(result => {
+      <Typography variant='h5' align='center' gutterBottom>
+        {categories[0].split('+').join(' ')}
+      </Typography>
+      {category1.map(result => {
         return (
           <>
-            <ListItem button onClick={() => clickLocation(result.coordinates.lat, result.coordinates.lng)}>
-              <ListItemText primary={result.name} secondary={result.name} />
-            </ListItem>
-            <Divider component="li" />
+            <ExpansionPanel 
+              onClick={() => clickLocation(result.coordinates.lat, result.coordinates.lng)}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>{result.name}</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                {result.address ? result.address : null}
+                {result.phone ? result.phone : null}
+                {result.isOpen ? (result.isOpen.open_now ? 'Currently open' : 'Closed') : null}
+                {result.website ? result.website : null}
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           </>
         )
       })}
+      <br/>
+      <Typography variant='h5' align='center' gutterBottom>
+        {categories[1].split('+').join(' ')}
+      </Typography>
+      {category2.map(result => {
+        return (
+          <>
+            <ExpansionPanel 
+              onClick={() => clickLocation(result.coordinates.lat, result.coordinates.lng)}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>{result.name}</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                {result.address ? result.address : null}
+                {result.phone ? result.phone : null}
+                {result.isOpen ? (result.isOpen.open_now ? 'Currently open' : 'Closed') : null}
+                {result.website ? result.website : null}
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          </>
+        )
+      })
+      }
     </List>
   )
 }
