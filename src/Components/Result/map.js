@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
   const mapStyles = {
@@ -7,7 +9,7 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
     height: '500px'
   }
 
-  const [zoom, setZoom] = useState(15)
+  const [zoom, setZoom] = useState(10)
   const [center, setCenter] = useState({
     lat: apiResults.initialCoordinates.lat,
     lng: apiResults.initialCoordinates.lng
@@ -54,5 +56,5 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env['GOOGLE_API_KEY']
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapSection)
