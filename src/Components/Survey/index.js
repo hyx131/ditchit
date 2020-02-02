@@ -19,13 +19,7 @@ const itemTypes = [
   { name: 'Shoes', src: shoePic },
 ]
 
-const Survey = ({ setApiResults, history, themeColor }) => {
-  const [selectedVals, setSelectedVals] = useState({
-    location: null,
-    itemType: null,
-    conditions: [],
-    canDonate: true
-  })
+const Survey = ({ selectedVals, setSelectedVals, setApiResults, history, themeColor }) => {
 
   const [finishSurvey, setFinishSurvey] = useState(false)
 
