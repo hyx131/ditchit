@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
 
 import Location from "./location";
 import ItemType from "./item-type";
@@ -18,20 +19,26 @@ const itemTypes = [
   { name: "Shoes", src: shoePic }
 ];
 
-const Survey = ({ history, themeColor }) => {
-  const [selectedVals, setSelectedVals] = useState({
-    location: null,
-    itemType: null,
-    conditions: [],
-    canDonate: true
-  });
-
+const Survey = ({
+  selectedVals,
+  setSelectedVals,
+  setApiResults,
+  history,
+  themeColor
+}) => {
   const [finishSurvey, setFinishSurvey] = useState(false);
 
   useEffect(() => {
     if (finishSurvey === true) {
-      // send to backend
-      console.log(selectedVals);
+      axios
+        .post(
+          "https://limitless-woodland-38268.herokuapp.com/ditchit/recommendations",
+          selectedVals
+        )
+        .then(res => {
+          setApiResults(res.data);
+        })
+        .catch(err => console.log("Error from survey post:", err));
       history.push("/result");
     }
   }, [selectedVals, finishSurvey]);

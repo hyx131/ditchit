@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
   const mapStyles = {
-    width: '800px',
-    height: '500px'
+    maxWidth: '50%',
+    maxHeight: '50%'
   }
 
-  const [zoom, setZoom] = useState(15)
+  const [zoom, setZoom] = useState(10)
   const [center, setCenter] = useState({
-    lat: apiResults.initialCenter.lat,
-    lng: apiResults.initialCenter.lng
+    lat: apiResults.initialCoordinates.lat,
+    lng: apiResults.initialCoordinates.lng
   })
-  const [locList, setlocList] = useState(apiResults.resultList)
+  const [locList, setlocList] = useState(apiResults.options)
 
   useEffect(() => {
     if (selectedLoc.lat) {
@@ -35,8 +37,8 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
       zoom={zoom}
       style={mapStyles}
       initialCenter={{
-        lat: apiResults.initialCenter.lat,
-        lng: apiResults.initialCenter.lng
+        lat: apiResults.initialCoordinates.lat,
+        lng: apiResults.initialCoordinates.lng
       }}
       center={{
         lat: center.lat,
@@ -45,7 +47,7 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
     >
       {locList.map((locResult, i) => {
         return (
-          <Marker key={i} name={locResult.name} position={{ lat: locResult.lat, lng: locResult.lng }} />
+          <Marker key={i} name={locResult.name} position={{ lat: locResult.coordinates ? locResult.coordinates.lat : locResult.lat, lng: locResult.coordinates ? locResult.coordinates.lng : locResult.lng }} />
         )
       })}
 
@@ -54,5 +56,5 @@ const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env['GOOGLE_API_KEY']
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapSection)

@@ -74,7 +74,11 @@ const ItemType = ({
   };
 
   return (
-    <Grid container justify="center">
+    <Grid
+      container
+      justify="center"
+      style={{ backgroundColor: themeColor.background }}
+    >
       <Grid item xs={12}>
         <Typography align="center" variant="h5" style={{ marginTop: "2%" }}>
           ditch.it
@@ -97,7 +101,7 @@ const ItemType = ({
             return (
               <Paper
                 key={i}
-                elevation={hover === i ? 7 : 2}
+                elevation={hover === i ? 5 : 2}
                 onMouseEnter={() => mouseEnter(i)}
                 onMouseLeave={mouseLeave}
                 onClick={() => clickItem(i, itemType.name)}
