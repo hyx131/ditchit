@@ -61,7 +61,7 @@ const ItemType = ({ themeColor, itemTypes, selectedVals, setSelectedVals, ...pro
   }
 
   return (
-    <Grid container justify='center'>
+    <Grid container justify='center' style={{ backgroundColor: themeColor.background }}>
       <Grid item xs={12}>
         <Typography align='center' variant='h5' style={{ marginTop: '10px' }} >ditch.it</Typography>
       </Grid>

@@ -5,8 +5,8 @@ dotenv.config()
 
 const MapSection = ({ google, apiResults, selectedLoc, ...props }) => {
   const mapStyles = {
-    width: '800px',
-    height: '500px'
+    maxWidth: '50%',
+    maxHeight: '50%'
   }
 
   const [zoom, setZoom] = useState(10)
